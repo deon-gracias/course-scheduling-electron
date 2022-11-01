@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { Box, Paper, ScrollArea, SimpleGrid } from "@mantine/core";
+import { useState } from "react";
+import CoursesForm from "./components/CoursesForm";
+import CoursesSchedule from "./components/CoursesSchedule";
 
-function App() {
+export default function App() {
+  const [schedule, setSchedule] = useState("");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <>
+      <Box sx={{ padding: "2rem" }}>
+        <SimpleGrid
+          sx={{ width: "100%", height: "100%" }}
+          spacing="lg"
+          // cols={2}
+          // breakpoints={[{ maxWidth: "md", cols: 1, rows: 2 }]}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          {/* <CoursesForm setSchedule={setSchedule} /> */}
+
+          {/* {Object.keys(schedule).length < 1 ? (
+            <CoursesForm setSchedule={setSchedule} />
+          ) : (
+            <CoursesSchedule
+              resetSchedule={() => setSchedule({})}
+              schedule={schedule}
+            />
+          )} */}
+          <CoursesForm setSchedule={setSchedule} />
+          <CoursesSchedule
+            removeBack
+            resetSchedule={() => setSchedule({})}
+            schedule={schedule}
+          />
+        </SimpleGrid>
+      </Box>
+    </>
   );
 }
-
-export default App;
